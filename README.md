@@ -175,7 +175,7 @@ What is wrong with this code? Some of the smaller issues are:
 * Overly complex logic
 * Unhelpful Comments
 * etc,.  
-Try to find the more complex smells on your own.
+Try to find the more complex smells on your own.  
 <br>
 ### Task 3: Refactor the Code  
 
