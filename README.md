@@ -176,8 +176,9 @@ What is wrong with this code? Some of the smaller issues are:
 * Unhelpful Comments
 * etc,.  
 Try to find the more complex smells on your own.
-<br>  
-### Task 3: Refactor the Code
+<br>
+### Task 3: Refactor the Code  
+
 There are many ways to refactor this code and not necessarily one correct one. It's useful to discuss whether you see any code that should be separated into and what each class should do. Can any of the code structures you've learned about make this code easier to read and easier to maintain? If you add more drinks to the menu, how can you make the code support this in the best way possible? 
 
 <!-- LICENSE -->
