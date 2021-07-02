@@ -5,10 +5,10 @@
     <img src="images/codesmell.png" alt="Logo" width="400">
   </a>
 
-  <h2 align="center">Creating and Testing BDD Scenarios using Specflow in .NET and Selenium Webdriver</h2>
+  <h2 align="center">Spotting and Refactoring Common Code Smells in Legacy Code</h2>
 
   <p align="center">
-    A demo lab instructing users on construct BDD test projects, feature files, step definitions and test runners to complete a BDD test iteration.
+    A demo lab instructing users on getting to know some of the most common code smells and spotting poorly written code fragments. Students will refactor these smells using Junit testing and their knowledge of proper coding principles.
     <br />
     <a href="https://github.com/U815073/SpecFlowSeleniumDemo/"><strong>Explore the docs �</strong></a>
     <br />
@@ -59,8 +59,7 @@
 <!-- ABOUT THE PROJECT -->
 ### About The Project
 
-This project is designed for a lab environment within a Test Automation and Behavior-Driven Development course. Students will build out a feature file, a series of step definitions, a Specflow test runner class to test a basic webdriver application that utilizes the preexisting Lambda lab to test its To-Do List functionalities.
-To view individual requirement solutions, review the steps below.
+This project is designed for a lab environment within a Working With Legacy Code course. Students will download, build and execute the simple example project, and follow the instructions below to locate numerous poorly written code fragments. Students will then use the preexisting test methods as well as create new methods to clean and organize the smelly codebase.
 
 ### Built With
 
@@ -92,9 +91,94 @@ Simply clone the repo to see the full solution:
    ```
 <!-- Instructions -->
 ## Instructions
-### Task 1: 
+### Task 1: Run Code  
+First, import and build the code as an existing Gradle project. Run the code as a series of Junit tests to validate that the code functions as it is written. Examine the tests and gain an understanding of what the code does. 
 
 <br>
+### Task 2: Identify the Smells  
+Now, lets look at the Pub class a little more closely.  
+```csharp
+public class Pub {
+
+
+    public static final String ONE_BEER = "budweiser";
+    public static final String ONE_CIDER = "downeast";
+    public static final String A_PROPER_CIDER = "strongbow";
+    public static final String GT = "gt";
+    public static final String BACARDI_SPECIAL = "bacardi_special";
+
+    public double computeCost(String drink, boolean student, double amount) {
+
+        if (amount > 2 && (drink == GT || drink == BACARDI_SPECIAL)) {
+            throw new RuntimeException("Too many drinks, max 2.");
+        }
+        double price;
+        if (drink.equals(ONE_BEER)) {
+            price = 4.00;
+        }
+        else if (drink.equals(ONE_CIDER)) {
+            price = 5.00;
+        }
+        else if (drink.equals(A_PROPER_CIDER)) price = 5.50;
+        else if (drink.equals(GT)) {
+            price = ingredient6() + ingredient5() + ingredient4();
+        }
+        else if (drink.equals(BACARDI_SPECIAL)) {
+            price = ingredient6()/2 + ingredient1() + ingredient2() + ingredient3();
+        }
+        else {
+            throw new RuntimeException("No such drink exists");
+        }
+        if (student && (drink == ONE_CIDER || drink == ONE_BEER || drink == A_PROPER_CIDER)) {
+            price = price - price/10;
+        }
+        return price*amount;
+    }
+
+    //one unit of rum
+    private double ingredient1() {
+        return 3.00;
+    }
+
+    //one unit of grenadine
+    private double ingredient2() {
+        return 0.50;
+    }
+
+    //one unit of lime juice
+    private double ingredient3() {
+        return 0.50;
+    }
+    
+    //one unit of green stuff
+    private double ingredient4() {
+        return 0.50;
+    }
+
+    //one unit of tonic water
+    private double ingredient5() {
+        return 1.00;
+    }
+
+    //one unit of gin
+    private double ingredient6() {
+        return 3.00;
+    }
+}
+```  
+
+What is wrong with this code? Some of the smaller issues are:  
+* Naming Convention Issues
+* Magical Numbers
+* Poorly Structured Class(es)
+* Overly complex logic
+* Unhelpful Comments
+* etc,.  
+Try to find the more complex smells on your own.
+<br>  
+### Task 3: Refactor the Code
+There are many ways to refactor this code and not necessarily one correct one. It's useful to discuss whether you see any code that should be separated into and what each class should do. Can any of the code structures you've learned about make this code easier to read and easier to maintain? If you add more drinks to the menu, how can you make the code support this in the best way possible? 
+
 <!-- LICENSE -->
 ## License
 
@@ -136,25 +220,4 @@ You will learn to:
 
 
 
-## Details
-
-:pencil2: Open `pom.xml` in IntelliJ by selecting *Import project* from the Welcome Screen. You can also use File --> New --> Project from existing sources. 
-
-:pencil2: Run all the tests and examine the code. 
-
-:question: What does this code do? Before you start changing the code, understand what the code does. 
-
-:question: What is wrong with the code? There are naming issues, magical numbers, bad structure and more. 
-
-The main part of this exercise is to refactor the code. You'll get to do much of this on your own, but here are some fairly small tasks to start with: 
-
-:pencil2: Fix all the magical numbers. 
-
-:pencil2: Rename existing functions so their names reflect what they do.
-
-:pencil2: Remove bad comments.
-
-:pencil2: Make functions where appropriate if there are clear bits of the code that are independent of the rest. 
-
-From now on you're on your own. There are many ways to refactor this code and not necessarily one correct one. It's useful to discuss whether you see any code that should be separated into and what each class should do. Can any of the code structures you've learned about make this code easier to read and easier to maintain? If you add more drinks to the menu, how can you make the code support this in the best way possible? 
 
