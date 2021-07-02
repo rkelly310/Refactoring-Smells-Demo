@@ -94,9 +94,11 @@ Simply clone the repo to see the full solution:
 ### Task 1: Run Code  
 First, import and build the code as an existing Gradle project. Run the code as a series of Junit tests to validate that the code functions as it is written. Examine the tests and gain an understanding of what the code does. 
 
-<br>
+<br>  
 ### Task 2: Identify the Smells  
+
 Now, lets look at the Pub class a little more closely.  
+
 ```csharp
 public class Pub {
 
